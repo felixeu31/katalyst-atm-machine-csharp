@@ -17,8 +17,9 @@ namespace AtmMachine.Tests
             var moneyList = atmMachine.Withdraw(1);
 
             // Assert
-            moneyList.Single().Value.Should().Be(1);
-            moneyList.Single().Type.Should().Be(MoneyType.Coin);
+            moneyList.Should().HaveCount(1);
+            moneyList.Should().AllSatisfy(x => x.Value.Should().Be(1));
+            moneyList.Should().AllSatisfy(x => x.Type.Should().Be(MoneyType.Coin));
         }
 
         [Test]
@@ -31,8 +32,9 @@ namespace AtmMachine.Tests
             var moneyList = atmMachine.Withdraw(2);
 
             // Assert
-            moneyList.Single().Value.Should().Be(2);
-            moneyList.Single().Type.Should().Be(MoneyType.Coin);
+            moneyList.Should().HaveCount(1);
+            moneyList.Should().AllSatisfy(x => x.Value.Should().Be(2));
+            moneyList.Should().AllSatisfy(x => x.Type.Should().Be(MoneyType.Coin));
         }
 
 
@@ -47,8 +49,9 @@ namespace AtmMachine.Tests
             var moneyList = atmMachine.Withdraw(5);
 
             // Assert
-            moneyList.Single().Value.Should().Be(5);
-            moneyList.Single().Type.Should().Be(MoneyType.Bill);
+            moneyList.Should().HaveCount(1);
+            moneyList.Should().AllSatisfy(x => x.Value.Should().Be(5));
+            moneyList.Should().AllSatisfy(x => x.Type.Should().Be(MoneyType.Bill));
         }
 
 
