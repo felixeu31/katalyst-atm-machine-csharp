@@ -9,6 +9,7 @@ public class Money
     }
 
     public static Money CoinOne = new Money(1, MoneyType.Coin);
+    public static Money CoinTwo = new Money(2, MoneyType.Coin);
 
     public readonly int Value;
     public readonly MoneyType Type;
