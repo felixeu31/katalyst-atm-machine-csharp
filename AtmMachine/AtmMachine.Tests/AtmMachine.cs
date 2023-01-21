@@ -6,7 +6,27 @@ public class AtmMachine
     {
         List<Money> result = new List<Money>();
 
-        if (amount == 5)
+        if (amount == 200)
+        {
+            result.Add(Money.BillTwoHundred);
+        }
+        else if (amount == 100)
+        {
+            result.Add(Money.BillOneHundred);
+        }
+        else if (amount == 50)
+        {
+            result.Add(Money.BillFifty);
+        }
+        else if (amount == 20)
+        {
+            result.Add(Money.BillTwenty);
+        }
+        else if (amount == 10)
+        {
+            result.Add(Money.BillTen);
+        }
+        else if (amount == 5)
         {
             result.Add(Money.BillFive);
         }
