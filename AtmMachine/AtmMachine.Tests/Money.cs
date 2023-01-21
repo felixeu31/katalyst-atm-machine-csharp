@@ -15,7 +15,18 @@ public class Money : IEquatable<Money>
     public static Money BillTwenty = new BillTwenty();
     public static Money BillFifty = new BillFifty();
     public static Money BillOneHundred = new BillOneHundred();
-    public static Money BillTwoHundred = new BillFive();
+    public static Money BillTwoHundred = new BillTwoHundred();
+    public static List<Money> MoneyTypes = new()
+    {
+        CoinOne,
+        CoinTwo,
+        BillFive,
+        BillTen,
+        BillTwenty,
+        BillFifty,
+        BillOneHundred,
+        BillTwoHundred
+    };
 
     public readonly int Value;
     public readonly MoneyType Type;

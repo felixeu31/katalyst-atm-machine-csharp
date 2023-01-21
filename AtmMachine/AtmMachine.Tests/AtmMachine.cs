@@ -6,44 +6,16 @@ public class AtmMachine
     {
         List<Money> result = new List<Money>();
 
-        if (amount == 200)
+        while (result.Sum(x => x.Value) < amount)
         {
-            result.Add(Money.BillTwoHundred);
-        }
-        else if (amount == 100)
-        {
-            result.Add(Money.BillOneHundred);
-        }
-        else if (amount == 50)
-        {
-            result.Add(Money.BillFifty);
-        }
-        else if (amount == 20)
-        {
-            result.Add(Money.BillTwenty);
-        }
-        else if (amount == 10)
-        {
-            result.Add(Money.BillTen);
-        }
-        else if (amount == 5)
-        {
-            result.Add(Money.BillFive);
-        }
-        else if (amount == 4)
-        {
-            result.Add(Money.CoinTwo);
-            result.Add(Money.CoinTwo);
+            var remaining = amount - result.Sum(x => x.Value);
 
-        }
-        else if (amount == 2)
-        {
-            result.Add(Money.CoinTwo);
-        }
-        else
-        {
-            result.Add(Money.CoinOne);
+            var maxMoney = Money.MoneyTypes.Where(x => x.Value <= remaining).MaxBy(x => x.Value);
 
+            if (maxMoney == null)
+                break;
+
+            result.Add(maxMoney);
         }
 
         return result;
