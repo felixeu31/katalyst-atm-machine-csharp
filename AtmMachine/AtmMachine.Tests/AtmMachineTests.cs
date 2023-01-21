@@ -28,17 +28,21 @@ namespace AtmMachine.Tests
     {
         public Money Withdraw(int amount)
         {
-            return new Money
-            {
-                Value = 1,
-                Type = "Coin"
-            };
+            return Money.CoinOne;
         }
     }
 
     public class Money
     {
-        public int Value { get; set; }
-        public string Type { get; set; }
+        private Money(int value, string type)
+        {
+            Value = value;
+            Type = type;
+        }
+
+        public static Money CoinOne = new Money(1, "Coin");
+
+        public readonly int Value;
+        public readonly string Type;
     }
 }
