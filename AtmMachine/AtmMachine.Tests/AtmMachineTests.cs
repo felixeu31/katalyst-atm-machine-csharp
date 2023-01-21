@@ -125,5 +125,26 @@ namespace AtmMachine.Tests
             // Assert
             moneyList.Should().HaveCount(2).And.AllSatisfy(x => x.Should().Be(Money.CoinTwo));
         }
+
+        [Test]
+        public void withdraw_complex_amount()
+        {
+            // Arrange
+            AtmMachine atmMachine = new();
+
+            // Act
+            var moneyList = atmMachine.Withdraw(434);
+
+            // Assert
+            moneyList.Should().BeEquivalentTo(new List<Money>
+            {
+                Money.BillTwoHundred,
+                Money.BillTwoHundred,
+                Money.BillTwenty,
+                Money.BillTen,
+                Money.CoinTwo,
+                Money.CoinTwo
+            });
+        }
     }
 }
