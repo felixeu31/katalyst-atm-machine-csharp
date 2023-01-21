@@ -2,18 +2,24 @@ namespace AtmMachine.Tests;
 
 public class AtmMachine
 {
-    public Money Withdraw(int amount)
+    public List<Money> Withdraw(int amount)
     {
+        List<Money> result = new List<Money>();
+
         if (amount == 5)
         {
-            return Money.BillFive;
+            result.Add(Money.BillFive);
         }
-
-        if (amount == 2)
+        else if (amount == 2)
         {
-            return Money.CoinTwo;
+            result.Add(Money.CoinTwo);
+        }
+        else
+        {
+            result.Add(Money.CoinOne);
+
         }
 
-        return Money.CoinOne;
+        return result;
     }
 }

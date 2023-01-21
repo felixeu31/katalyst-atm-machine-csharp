@@ -14,11 +14,11 @@ namespace AtmMachine.Tests
             AtmMachine atmMachine = new();
 
             // Act
-            var money = atmMachine.Withdraw(1);
+            var moneyList = atmMachine.Withdraw(1);
 
             // Assert
-            money.Value.Should().Be(1);
-            money.Type.Should().Be(MoneyType.Coin);
+            moneyList.Single().Value.Should().Be(1);
+            moneyList.Single().Type.Should().Be(MoneyType.Coin);
         }
 
         [Test]
@@ -28,11 +28,11 @@ namespace AtmMachine.Tests
             AtmMachine atmMachine = new();
 
             // Act
-            var money = atmMachine.Withdraw(2);
+            var moneyList = atmMachine.Withdraw(2);
 
             // Assert
-            money.Value.Should().Be(2);
-            money.Type.Should().Be(MoneyType.Coin);
+            moneyList.Single().Value.Should().Be(2);
+            moneyList.Single().Type.Should().Be(MoneyType.Coin);
         }
 
 
@@ -44,11 +44,27 @@ namespace AtmMachine.Tests
             AtmMachine atmMachine = new();
 
             // Act
-            var money = atmMachine.Withdraw(5);
+            var moneyList = atmMachine.Withdraw(5);
 
             // Assert
-            money.Value.Should().Be(5);
-            money.Type.Should().Be(MoneyType.Bill);
+            moneyList.Single().Value.Should().Be(5);
+            moneyList.Single().Type.Should().Be(MoneyType.Bill);
+        }
+
+
+        [Test]
+        public void withdraw_two_coins_of_two_euros()
+        {
+            // Arrange
+            AtmMachine atmMachine = new();
+
+            // Act
+            var moneyList = atmMachine.Withdraw(4);
+
+            // Assert
+            moneyList.Should().HaveCount(2);
+            moneyList.Should().AllSatisfy(x => x.Value.Should().Be(2));
+            moneyList.Should().AllSatisfy(x => x.Type.Should().Be(MoneyType.Coin));
         }
     }
 }
