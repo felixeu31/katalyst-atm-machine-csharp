@@ -10,6 +10,12 @@ public class AtmMachine
         {
             result.Add(Money.BillFive);
         }
+        else if (amount == 4)
+        {
+            result.Add(Money.CoinTwo);
+            result.Add(Money.CoinTwo);
+
+        }
         else if (amount == 2)
         {
             result.Add(Money.CoinTwo);
