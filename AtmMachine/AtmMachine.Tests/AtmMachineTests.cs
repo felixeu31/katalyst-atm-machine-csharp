@@ -18,7 +18,7 @@ namespace AtmMachine.Tests
 
             // Assert
             money.Value.Should().Be(1);
-            money.Type.Should().Be("Coin");
+            money.Type.Should().Be(MoneyType.Coin);
         }
 
 
@@ -34,15 +34,20 @@ namespace AtmMachine.Tests
 
     public class Money
     {
-        private Money(int value, string type)
+        private Money(int value, MoneyType type)
         {
             Value = value;
             Type = type;
         }
 
-        public static Money CoinOne = new Money(1, "Coin");
+        public static Money CoinOne = new Money(1, MoneyType.Coin);
 
         public readonly int Value;
-        public readonly string Type;
+        public readonly MoneyType Type;
+    }
+
+    public enum MoneyType
+    {
+        Coin
     }
 }
