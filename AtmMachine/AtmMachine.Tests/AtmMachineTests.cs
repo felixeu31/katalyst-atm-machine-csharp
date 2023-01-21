@@ -28,7 +28,11 @@ namespace AtmMachine.Tests
     {
         public Money Withdraw(int amount)
         {
-            throw new NotImplementedException();
+            return new Money
+            {
+                Value = 1,
+                Type = "Coin"
+            };
         }
     }
 
