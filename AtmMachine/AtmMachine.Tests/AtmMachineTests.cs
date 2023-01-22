@@ -146,5 +146,23 @@ namespace AtmMachine.Tests
                 Money.CoinTwo
             });
         }
+
+        [Test]
+        public void withdraw_four_hundred_when_only_one_available_two_hundred_bill()
+        {
+            // Arrange
+            AtmMachine atmMachine = new();
+
+            // Act
+            var moneyList = atmMachine.Withdraw(400);
+
+            // Assert
+            moneyList.Should().BeEquivalentTo(new List<Money>
+            {
+                Money.BillTwoHundred,
+                Money.BillOneHundred,
+                Money.BillOneHundred
+            });
+        }
     }
 }
