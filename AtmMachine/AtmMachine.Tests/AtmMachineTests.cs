@@ -151,7 +151,7 @@ namespace AtmMachine.Tests
         public void withdraw_four_hundred_when_only_one_available_two_hundred_bill()
         {
             // Arrange
-            AtmMachine atmMachine = new();
+            AtmMachine atmMachine = new(availableBillTwoHundred: 1);
 
             // Act
             var moneyList = atmMachine.Withdraw(400);

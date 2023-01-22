@@ -2,6 +2,32 @@ namespace AtmMachine.Tests;
 
 public class AtmMachine
 {
+    private readonly Dictionary<Money, int> _availableMoney;
+
+    public AtmMachine(
+        int availableBillTwoHundred = int.MaxValue,
+        int availableBillOneHundred = int.MaxValue,
+        int availableBillFifty = int.MaxValue,
+        int availableBillTwenty = int.MaxValue,
+        int availableBillTen = int.MaxValue,
+        int availableBillFive = int.MaxValue,
+        int availableCoinTwo = int.MaxValue,
+        int availableCoinOne = int.MaxValue
+        )
+    {
+        _availableMoney= new Dictionary<Money, int>
+        {
+            { Money.BillTwoHundred, availableBillTwoHundred},
+            { Money.BillOneHundred, availableBillOneHundred},
+            { Money.BillFifty, availableBillFifty},
+            { Money.BillTwenty, availableBillTwenty},
+            { Money.BillTen, availableBillTen},
+            { Money.BillFive, availableBillFive},
+            { Money.CoinTwo, availableCoinTwo},
+            { Money.CoinOne, availableCoinOne}
+        };
+    }
+
     public List<Money> Withdraw(int amount)
     {
         List<Money> result = new List<Money>();
@@ -10,12 +36,16 @@ public class AtmMachine
         {
             var remaining = amount - result.Sum(x => x.Value);
 
-            var maxMoney = Money.MoneyTypes.Where(x => x.Value <= remaining).MaxBy(x => x.Value);
+            var maxAvailableMoney = Money.MoneyTypes
+                .Where(x => x.Value <= remaining)
+                .Where(x => _availableMoney[x] > 0)
+                .MaxBy(x => x.Value);
 
-            if (maxMoney == null)
+            if (maxAvailableMoney == null)
                 break;
 
-            result.Add(maxMoney);
+            _availableMoney[maxAvailableMoney] -= 1;
+            result.Add(maxAvailableMoney);
         }
 
         return result;
