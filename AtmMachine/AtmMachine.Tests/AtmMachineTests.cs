@@ -173,7 +173,7 @@ namespace AtmMachine.Tests
             AtmMachine atmMachine = new(
                 availableBillFiveHundred: 2,
                 availableBillTwoHundred: 3,
-                availableBillOneHundred: 4,
+                availableBillOneHundred: 5,
                 availableBillFifty: 12,
                 availableBillTwenty: 20,
                 availableBillTen: 50,
