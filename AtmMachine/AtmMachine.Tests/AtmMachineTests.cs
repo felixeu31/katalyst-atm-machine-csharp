@@ -182,10 +182,9 @@ namespace AtmMachine.Tests
                 availableCoinOne: 500
                 );
 
-            // Act
+            // Act, Assert
             var moneyList = atmMachine.Withdraw(1725);
 
-            // Assert
             moneyList.Should().BeEquivalentTo(new List<Money>
             {
                 Money.BillFiveHundred,
@@ -197,6 +196,14 @@ namespace AtmMachine.Tests
                 Money.BillTwenty,
                 Money.BillFive
             });
+
+            moneyList = atmMachine.Withdraw(1825);
+
+            moneyList.Where(x => x.Equals(Money.BillOneHundred)).Should().HaveCount(4);
+            moneyList.Where(x => x.Equals(Money.BillFifty)).Should().HaveCount(12);
+            moneyList.Where(x => x.Equals(Money.BillTwenty)).Should().HaveCount(19);
+            moneyList.Where(x => x.Equals(Money.BillTen)).Should().HaveCount(44);
+            moneyList.Where(x => x.Equals(Money.BillFive)).Should().HaveCount(1);
         }
     }
 }
