@@ -164,5 +164,39 @@ namespace AtmMachine.Tests
                 Money.BillOneHundred
             });
         }
+
+
+        [Test]
+        public void withdraw_complex_amount_with_atm_availability()
+        {
+            // Arrange
+            AtmMachine atmMachine = new(
+                availableBillFiveHundred: 2,
+                availableBillTwoHundred: 3,
+                availableBillOneHundred: 4,
+                availableBillFifty: 12,
+                availableBillTwenty: 20,
+                availableBillTen: 50,
+                availableBillFive: 100,
+                availableCoinTwo: 250,
+                availableCoinOne: 500
+                );
+
+            // Act
+            var moneyList = atmMachine.Withdraw(1725);
+
+            // Assert
+            moneyList.Should().BeEquivalentTo(new List<Money>
+            {
+                Money.BillFiveHundred,
+                Money.BillFiveHundred,
+                Money.BillTwoHundred,
+                Money.BillTwoHundred,
+                Money.BillTwoHundred,
+                Money.BillOneHundred,
+                Money.BillTwenty,
+                Money.BillFive
+            });
+        }
     }
 }

@@ -16,6 +16,7 @@ public class Money : IEquatable<Money>
     public static Money BillFifty = new BillFifty();
     public static Money BillOneHundred = new BillOneHundred();
     public static Money BillTwoHundred = new BillTwoHundred();
+    public static Money BillFiveHundred = new BillFiveHundred();
     public static List<Money> MoneyTypes = new()
     {
         CoinOne,
@@ -25,7 +26,8 @@ public class Money : IEquatable<Money>
         BillTwenty,
         BillFifty,
         BillOneHundred,
-        BillTwoHundred
+        BillTwoHundred,
+        BillFiveHundred
     };
 
     public readonly int Value;
@@ -115,6 +117,14 @@ public class BillOneHundred : Money
 public class BillTwoHundred : Money
 {
     public BillTwoHundred() : base(200, MoneyType.Bill)
+    {
+
+    }
+}
+
+public class BillFiveHundred : Money
+{
+    public BillFiveHundred() : base(500, MoneyType.Bill)
     {
 
     }

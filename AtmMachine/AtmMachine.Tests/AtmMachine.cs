@@ -5,6 +5,7 @@ public class AtmMachine
     private readonly Dictionary<Money, int> _availableMoney;
 
     public AtmMachine(
+        int availableBillFiveHundred = int.MaxValue,
         int availableBillTwoHundred = int.MaxValue,
         int availableBillOneHundred = int.MaxValue,
         int availableBillFifty = int.MaxValue,
@@ -17,6 +18,7 @@ public class AtmMachine
     {
         _availableMoney= new Dictionary<Money, int>
         {
+            { Money.BillFiveHundred, availableBillFiveHundred},
             { Money.BillTwoHundred, availableBillTwoHundred},
             { Money.BillOneHundred, availableBillOneHundred},
             { Money.BillFifty, availableBillFifty},
